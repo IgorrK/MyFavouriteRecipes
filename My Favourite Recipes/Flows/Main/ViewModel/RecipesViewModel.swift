@@ -14,7 +14,7 @@ final class RecipesViewModel: Identifiable, ObservableObject {
     
     // MARK: - Properties
     
-    @ObservedObject var storage: RecipeData
+    @ObservedObject var storage: RecipeDataStorage
     
     private var cancellable: AnyCancellable?
     
@@ -34,7 +34,7 @@ final class RecipesViewModel: Identifiable, ObservableObject {
     
     var id = UUID()
         
-    init(dataStorage: RecipeData) {
+    init(dataStorage: RecipeDataStorage) {
         self.storage = dataStorage
         cancellable = self.storage.$recipes.sink { [weak self] data in
             self?.updateListDataSource(with: data)
@@ -47,18 +47,7 @@ final class RecipesViewModel: Identifiable, ObservableObject {
     func set(favourite: Bool, for recipe: Recipe) {
         storage.set(favourite: favourite, recipe: recipe)
     }
-    
-    @ViewBuilder func view(for route: Route) -> some View {
-        switch route {
-        case .details(let recipe):
-            let viewModel = RecipeDetailViewModel(dataStorage: storage, recipe: recipe)
-            RecipeDetailView(viewModel: viewModel)
-        case .adddRecipe:
-            let viewModel = AddRecipeViewModel()
-            AddRecipeView(viewModel: viewModel)
-        }
-    }
-    
+        
     // MARK: - Private mtehods
     
     private func loadData() {

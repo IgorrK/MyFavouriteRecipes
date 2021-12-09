@@ -12,6 +12,7 @@ struct RecipesView: View {
     
     // MARK: - Properties
     
+    let router: RecipesRouter
     @ObservedObject var viewModel: RecipesViewModel
     @State var showAddRecipe: Bool = false
     
@@ -34,7 +35,7 @@ struct RecipesView: View {
                             self.viewModel.set(favourite: $0, for: recipe)
                         }
                     )
-                    NavigationLink(destination: viewModel.view(for: .details(recipe: recipe))) {
+                    NavigationLink(destination: router.view(for: .details(recipe: recipe))) {
                         RecipeRow(recipe: recipe, isFavourite: binding)
                     }
                 }
@@ -50,7 +51,7 @@ struct RecipesView: View {
                     .renderingMode(.template)
                     .foregroundColor(.systemTint)
             }.sheet(isPresented: $showAddRecipe) {
-                viewModel.view(for: .adddRecipe)
+                router.view(for: .addRecipe)
             }
             )
         }
@@ -59,6 +60,8 @@ struct RecipesView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipesView(viewModel: RecipesViewModel(dataStorage: RecipeData()))
+        let dataStorage = RecipeDataStorage()
+        RecipesView(router: RecipesRouter(dataStorage: dataStorage),
+                    viewModel: RecipesViewModel(dataStorage: dataStorage))
     }
 }

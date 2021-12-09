@@ -14,7 +14,7 @@ final class RecipeDetailViewModel: Identifiable, ObservableObject {
     
     // MARK: - Properties
     
-    @ObservedObject var dataStorage: RecipeData
+    @ObservedObject var dataStorage: RecipeDataStorage
     var recipe: Recipe
 
     var selectedIndex: Int = 0 {
@@ -32,7 +32,7 @@ final class RecipeDetailViewModel: Identifiable, ObservableObject {
     
     // MARK: - Lifecycle
     
-    init(dataStorage: RecipeData, recipe: Recipe) {
+    init(dataStorage: RecipeDataStorage, recipe: Recipe) {
         self.dataStorage = dataStorage
         self.recipe = recipe
     }
@@ -43,7 +43,7 @@ final class RecipeDetailViewModel: Identifiable, ObservableObject {
         dataStorage.set(favourite: !recipe.isFavourite, recipe: recipe)
     }
 
-    // MARK: - Private mtehods
+    // MARK: - Private methods
     
 
 }

@@ -74,6 +74,6 @@ struct RecipeDetailView: View {
 
 struct RecipeDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeDetailView(viewModel: RecipeDetailViewModel(dataStorage: RecipeData(), recipe: Recipe.mockItem))
+        RecipeDetailView(viewModel: RecipeDetailViewModel(dataStorage: RecipeDataStorage(), recipe: Recipe.mockItem))
     }
 }

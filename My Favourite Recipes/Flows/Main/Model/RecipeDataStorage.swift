@@ -1,5 +1,5 @@
 //
-//  RecipeData.swift
+//  RecipeDataStorage.swift
 //  My Favourite Recipes
 //
 //  Created by Igor Kulik on 07.12.2021.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class RecipeData: ObservableObject {
+final class RecipeDataStorage: ObservableObject {
     
     // MARK: - Property
     
