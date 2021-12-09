@@ -48,9 +48,15 @@ final class RecipesViewModel: Identifiable, ObservableObject {
         storage.set(favourite: favourite, recipe: recipe)
     }
     
-    func view(for recipe: Recipe) -> some View {
-        let viewModel = RecipeDetailViewModel(dataStorage: storage, recipe: recipe)
-        return RecipeDetailView(viewModel: viewModel)
+    @ViewBuilder func view(for route: Route) -> some View {
+        switch route {
+        case .details(let recipe):
+            let viewModel = RecipeDetailViewModel(dataStorage: storage, recipe: recipe)
+            RecipeDetailView(viewModel: viewModel)
+        case .adddRecipe:
+            let viewModel = AddRecipeViewModel()
+            AddRecipeView(viewModel: viewModel)
+        }
     }
     
     // MARK: - Private mtehods
@@ -90,5 +96,10 @@ extension RecipesViewModel {
     enum ListType: Int {
         case `default`
         case favourites
+    }
+    
+    enum Route {
+        case details(recipe: Recipe)
+        case adddRecipe
     }
 }

@@ -13,6 +13,7 @@ struct RecipesView: View {
     // MARK: - Properties
     
     @ObservedObject var viewModel: RecipesViewModel
+    @State var showAddRecipe: Bool = false
     
     // MARK: - View
     
@@ -33,7 +34,7 @@ struct RecipesView: View {
                             self.viewModel.set(favourite: $0, for: recipe)
                         }
                     )
-                    NavigationLink(destination: viewModel.view(for: recipe)) {
+                    NavigationLink(destination: viewModel.view(for: .details(recipe: recipe))) {
                         RecipeRow(recipe: recipe, isFavourite: binding)
                     }
                 }
@@ -41,6 +42,17 @@ struct RecipesView: View {
                 .animation(.easeInOut, value: viewModel.listDataSource)
             }
             .navigationBarTitle("My Favourite Recipes")
+            .navigationBarItems(trailing:
+                                    Button(action: {
+                self.showAddRecipe.toggle()
+            }) {
+                Image(systemName: "plus")
+                    .renderingMode(.template)
+                    .foregroundColor(.systemTint)
+            }.sheet(isPresented: $showAddRecipe) {
+                viewModel.view(for: .adddRecipe)
+            }
+            )
         }
     }
 }
