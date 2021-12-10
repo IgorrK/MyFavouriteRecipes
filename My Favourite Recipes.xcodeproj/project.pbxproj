@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,6 +27,8 @@
 		847C4B162762541100FD2B5B /* RoutableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C4B152762541100FD2B5B /* RoutableView.swift */; };
 		847C4B182762542D00FD2B5B /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C4B172762542D00FD2B5B /* Routing.swift */; };
 		847C4B1C2762549900FD2B5B /* RecipesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C4B1B2762549900FD2B5B /* RecipesRouter.swift */; };
+		8483A9AD27637F2A002796E2 /* ImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 8483A9AC27637F2A002796E2 /* ImagePicker */; };
+		8497F6432762D347005D1825 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497F6422762D347005D1825 /* UIScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		847C4B152762541100FD2B5B /* RoutableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutableView.swift; sourceTree = "<group>"; };
 		847C4B172762542D00FD2B5B /* Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing.swift; sourceTree = "<group>"; };
 		847C4B1B2762549900FD2B5B /* RecipesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesRouter.swift; sourceTree = "<group>"; };
+		8483A9AA27637EDC002796E2 /* ImagePicker */ = {isa = PBXFileReference; lastKnownFileType = text; path = ImagePicker; sourceTree = SOURCE_ROOT; };
+		8497F6422762D347005D1825 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8483A9AD27637F2A002796E2 /* ImagePicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +75,7 @@
 			children = (
 				831539A12384982000CAD2DD /* My Favourite Recipes */,
 				831539A02384982000CAD2DD /* Products */,
+				8483A9AB27637F2A002796E2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +98,7 @@
 				847C4AA9275E5AD900FD2B5B /* Resources */,
 				847C4B0927618B1700FD2B5B /* Reusable */,
 				831539B02384982200CAD2DD /* Info.plist */,
+				8483A9AA27637EDC002796E2 /* ImagePicker */,
 			);
 			path = "My Favourite Recipes";
 			sourceTree = "<group>";
@@ -190,6 +197,7 @@
 		847C4B0927618B1700FD2B5B /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
+				8497F63E2762D2E7005D1825 /* Utilities */,
 				847C4B0A27618B2600FD2B5B /* ViewModifiers */,
 			);
 			path = Reusable;
@@ -207,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				847C4B1027618CFB00FD2B5B /* SwiftUI */,
+				8497F6412762D32F005D1825 /* UiKit */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -237,6 +246,28 @@
 			path = Routing;
 			sourceTree = "<group>";
 		};
+		8483A9AB27637F2A002796E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8497F63E2762D2E7005D1825 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		8497F6412762D32F005D1825 /* UiKit */ = {
+			isa = PBXGroup;
+			children = (
+				8497F6422762D347005D1825 /* UIScreen.swift */,
+			);
+			path = UiKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -253,6 +284,9 @@
 			dependencies = (
 			);
 			name = "My Favourite Recipes";
+			packageProductDependencies = (
+				8483A9AC27637F2A002796E2 /* ImagePicker */,
+			);
 			productName = "My Favourite Recipes";
 			productReference = 8315399F2384982000CAD2DD /* My Favourite Recipes.app */;
 			productType = "com.apple.product-type.application";
@@ -264,7 +298,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1110;
-				LastUpgradeCheck = 1110;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = Packt;
 				TargetAttributes = {
 					8315399E2384982000CAD2DD = {
@@ -311,6 +345,7 @@
 				847C4B182762542D00FD2B5B /* Routing.swift in Sources */,
 				847C4B0F27618CEB00FD2B5B /* View.swift in Sources */,
 				847C4AFE275ECFDB00FD2B5B /* RecipeDetailView.swift in Sources */,
+				8497F6432762D347005D1825 /* UIScreen.swift in Sources */,
 				847C4B162762541100FD2B5B /* RoutableView.swift in Sources */,
 				831539A32384982000CAD2DD /* AppDelegate.swift in Sources */,
 				834CF2C42385F425007BE6C5 /* RecipesViewModel.swift in Sources */,
@@ -368,6 +403,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -392,7 +428,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -428,6 +464,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -446,7 +483,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -462,14 +499,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"My Favourite Recipes/Preview Content\"";
-				DEVELOPMENT_TEAM = C233LQUF2Z;
+				DEVELOPMENT_TEAM = G68HFXQ7G5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "My Favourite Recipes/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.packt.My-Favourite-Recipes";
+				PRODUCT_BUNDLE_IDENTIFIER = "internal.My-Favourite-Recipes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -482,14 +519,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"My Favourite Recipes/Preview Content\"";
-				DEVELOPMENT_TEAM = C233LQUF2Z;
+				DEVELOPMENT_TEAM = G68HFXQ7G5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "My Favourite Recipes/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.packt.My-Favourite-Recipes";
+				PRODUCT_BUNDLE_IDENTIFIER = "internal.My-Favourite-Recipes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -518,6 +555,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8483A9AC27637F2A002796E2 /* ImagePicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ImagePicker;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 831539972384982000CAD2DD /* Project object */;
 }
