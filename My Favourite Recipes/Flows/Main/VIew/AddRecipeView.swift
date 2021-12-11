@@ -17,12 +17,11 @@ struct AddRecipeView: View {
     @State private var recipeName: String = ""
     @State private var ingredient: String = ""
     @State private var showsSourceType = false
-    @State private var showsPhotoLibraryPicker = false
-
     @State private var showsImagePicker = false
+    @State private var showsPermissionDeniedAlert: Bool = false
+    @State private var pickerSourceType: ImagePicker.SourceType = .photoLibrary
     @State private var pickedImage: UIImage?
-    @State private var pickerSourceType: UIImagePickerController.SourceType = .photoLibrary
-    
+
     // MARK: - View
     
     var body: some View {
@@ -48,23 +47,34 @@ struct AddRecipeView: View {
             .buttonStyle(PlainButtonStyle())
             .frame(maxWidth: .infinity)
             .actionSheet(isPresented: $showsSourceType) {
-                ActionSheet(title: Text("Choose a source"), buttons: [
+                let commonButtonAction: Completion = {
+                    ImagePicker.PermissionManager.resolvePermission(for: pickerSourceType) { status in
+                        switch status {
+                        case .authorized:
+                            showsImagePicker.toggle()
+                        case .denied:
+                            showsPermissionDeniedAlert.toggle()
+                        case .notNow:
+                            break
+                        }
+                    }
+                }
+                
+                return ActionSheet(title: Text("Choose a source"), buttons: [
                     .default(Text("Photo Library")) {
                         pickerSourceType = .photoLibrary
-                        showsImagePicker.toggle()
+                        commonButtonAction()
                     },
                     .default(Text("Camera")) {
                         pickerSourceType = .camera
-                        showsImagePicker.toggle()
+                        commonButtonAction()
                     },
                     .cancel()
                 ])
             }
-            .sheet(isPresented: $showsPhotoLibraryPicker) {
-                ImagePicker.picker(sourceType: .camera, selectedImage: $pickedImage)
-            }
+            .permissionDeniedAlert(sourceType: pickerSourceType, isPresented: $showsPermissionDeniedAlert)
             .sheet(isPresented: $showsImagePicker) {
-                ImagePicker.picker(sourceType: .photoLibrary, selectedImage: $pickedImage)
+                ImagePicker.picker(sourceType: pickerSourceType, selectedImage: $pickedImage)
             }
             
             Section(header: Text("Add Recipe Name:")) {
@@ -102,7 +112,11 @@ struct AddRecipeView: View {
         
     }
     
-    private var buttonImage: Image {
+}
+
+// MARK: - Subviews
+private extension AddRecipeView {
+    var buttonImage: Image {
         if let pickedImage = pickedImage {
             return Image(uiImage: pickedImage)
         } else {
