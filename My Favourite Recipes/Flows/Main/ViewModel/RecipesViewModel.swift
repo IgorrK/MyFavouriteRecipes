@@ -3,7 +3,6 @@
 //  My Favourite Recipes
 //
 //  Created by Chris Barker on 20/11/2019.
-//  Copyright © 2019 Packt. All rights reserved.
 //
 
 import UIKit
@@ -62,9 +61,9 @@ final class RecipesViewModel: Identifiable, ObservableObject {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
             var recipes = [Recipe]()
-            recipes.append(Recipe(id: UUID(), name: "MARIO", origin: "Italian", countryCode: "IT", ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
-            recipes.append(Recipe(id: UUID(), name: "MALAKA", origin: "Greek", countryCode: "GR", ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
-            recipes.append(Recipe(id: UUID(), name: "COCKNEY", origin: "British", countryCode: "GB", ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(id: UUID(), name: "Italian 2", origin: "Italian", countryCode: "IT", ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(id: UUID(), name: "Greek 2", origin: "Greek", countryCode: "GR", ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(id: UUID(), name: "British 2", origin: "British", countryCode: "GB", ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
             self?.storage.addItems(from: recipes)
         }
     }
