@@ -335,7 +335,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1110;
 				LastUpgradeCheck = 1310;
-				ORGANIZATIONNAME = Packt;
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					8315399E2384982000CAD2DD = {
 						CreatedOnToolsVersion = 11.1;
