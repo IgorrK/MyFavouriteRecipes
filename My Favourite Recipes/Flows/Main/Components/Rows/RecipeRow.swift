@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Model
 
 struct RecipeRow: View {
     
@@ -23,7 +24,7 @@ struct RecipeRow: View {
                     .font(.headline)
                     .foregroundColor(Color.blue)
                     .bold()
-                Image(recipe.countryCode)
+                Image(uiImageOrNil: recipe.country.image)?
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 24.0, height: 24.0)

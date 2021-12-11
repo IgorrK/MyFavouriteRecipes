@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import Model
 import SwiftUI
 
 final class RecipeDetailViewModel: Identifiable, ObservableObject {
@@ -14,6 +14,7 @@ final class RecipeDetailViewModel: Identifiable, ObservableObject {
     // MARK: - Properties
     
     @ObservedObject var dataStorage: RecipeDataStorage
+    
     var recipe: Recipe
 
     var selectedIndex: Int = 0 {
@@ -25,7 +26,6 @@ final class RecipeDetailViewModel: Identifiable, ObservableObject {
     }
     
     @Published var contentType: ContentType = .ingredients
-
 
     var id = UUID()
     

@@ -2,29 +2,19 @@
 //  Recipe.swift
 //  My Favourite Recipes
 //
-//  Created by Igor Kulik on 06.12.2021.
+//  Created by Igor Kulik on 11.12.2021.
+//  Copyright © 2021 Packt. All rights reserved.
 //
 
 import Foundation
-
-struct Recipe: Identifiable, Hashable {
-    var id = UUID()
-    var name = ""
-    var origin = ""
-    var isFavourite: Bool = false
-    var countryCode = ""
-    var ingredients = [String]()
-    var recipe = ""
-}
+import Model
 
 // MARK: - Mock data
-
 extension Recipe {
     static var mockItem: Recipe {
-        return Recipe(id: UUID(),
-                      name: "Italian Pizza Chicken",
+        return Recipe(name: "Italian Pizza Chicken",
                       origin: "Italian",
-                      countryCode: "IT",
+                      country: Country(id: "IT", name: "Italy", flagEmoji: "🇮🇹"),
                       ingredients: mockIngredients,
                       recipe: mockRecipe
         )

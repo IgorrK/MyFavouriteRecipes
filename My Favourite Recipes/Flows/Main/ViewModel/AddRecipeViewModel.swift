@@ -6,15 +6,24 @@
 //
 
 import Foundation
+import Model
 import SwiftUI
 
 final class AddRecipeViewModel: Identifiable, ObservableObject {
 
     // MARK: - Properties
     
+    @ObservedObject private var storage = CountryDataStorage()
     var id = UUID()
 
     @Published var ingredients = [String]()
+    @Published var countryListDataSource = [Country]()
+
+    // MARK: - Lifecycle
+    
+    init() {
+        self.countryListDataSource = storage.countries
+    }
     
     // MARK: - Public methods
     

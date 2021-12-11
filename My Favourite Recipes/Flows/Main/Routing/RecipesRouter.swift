@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Model
 
 enum RecipesRoute: RouteType {
     case details(recipe: Recipe)

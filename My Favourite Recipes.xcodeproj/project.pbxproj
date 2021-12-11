@@ -14,7 +14,6 @@
 		831539AC2384982200CAD2DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 831539AB2384982200CAD2DD /* Preview Assets.xcassets */; };
 		831539AF2384982200CAD2DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 831539AD2384982200CAD2DD /* LaunchScreen.storyboard */; };
 		834CF2C42385F425007BE6C5 /* RecipesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834CF2C32385F425007BE6C5 /* RecipesViewModel.swift */; };
-		847C4AAD275E5FF800FD2B5B /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C4AAC275E5FF800FD2B5B /* Recipe.swift */; };
 		847C4AB1275E61DA00FD2B5B /* RecipeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C4AB0275E61DA00FD2B5B /* RecipeRow.swift */; };
 		847C4AFE275ECFDB00FD2B5B /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C4AFD275ECFDB00FD2B5B /* RecipeDetailView.swift */; };
 		847C4B00275ED08B00FD2B5B /* RecipeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C4AFF275ED08B00FD2B5B /* RecipeDetailViewModel.swift */; };
@@ -28,6 +27,12 @@
 		847C4B182762542D00FD2B5B /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C4B172762542D00FD2B5B /* Routing.swift */; };
 		847C4B1C2762549900FD2B5B /* RecipesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C4B1B2762549900FD2B5B /* RecipesRouter.swift */; };
 		84827023276424F800D69978 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84827022276424F800D69978 /* Typealiases.swift */; };
+		8482702627642BA300D69978 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482702527642BA300D69978 /* TextView.swift */; };
+		8482702A2764DBA300D69978 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848270292764DBA300D69978 /* Image.swift */; };
+		8482702D2764DFB500D69978 /* Model in Frameworks */ = {isa = PBXBuildFile; productRef = 8482702C2764DFB500D69978 /* Model */; };
+		848270302764E07D00D69978 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482702F2764E07D00D69978 /* Recipe.swift */; };
+		848270322764E34500D69978 /* CountryDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848270312764E34500D69978 /* CountryDataStorage.swift */; };
+		848270342764E38D00D69978 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848270332764E38D00D69978 /* Country.swift */; };
 		8483A9AD27637F2A002796E2 /* ImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 8483A9AC27637F2A002796E2 /* ImagePicker */; };
 		8497F6432762D347005D1825 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497F6422762D347005D1825 /* UIScreen.swift */; };
 /* End PBXBuildFile section */
@@ -42,7 +47,6 @@
 		831539AE2384982200CAD2DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		831539B02384982200CAD2DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		834CF2C32385F425007BE6C5 /* RecipesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewModel.swift; sourceTree = "<group>"; };
-		847C4AAC275E5FF800FD2B5B /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		847C4AB0275E61DA00FD2B5B /* RecipeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRow.swift; sourceTree = "<group>"; };
 		847C4AFD275ECFDB00FD2B5B /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 		847C4AFF275ED08B00FD2B5B /* RecipeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModel.swift; sourceTree = "<group>"; };
@@ -56,6 +60,12 @@
 		847C4B172762542D00FD2B5B /* Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing.swift; sourceTree = "<group>"; };
 		847C4B1B2762549900FD2B5B /* RecipesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesRouter.swift; sourceTree = "<group>"; };
 		84827022276424F800D69978 /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
+		8482702527642BA300D69978 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		848270292764DBA300D69978 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		8482702B2764DFA100D69978 /* Model */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Model; sourceTree = "<group>"; };
+		8482702F2764E07D00D69978 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		848270312764E34500D69978 /* CountryDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDataStorage.swift; sourceTree = "<group>"; };
+		848270332764E38D00D69978 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		8483A9AA27637EDC002796E2 /* ImagePicker */ = {isa = PBXFileReference; lastKnownFileType = text; path = ImagePicker; sourceTree = SOURCE_ROOT; };
 		8497F6422762D347005D1825 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8482702D2764DFB500D69978 /* Model in Frameworks */,
 				8483A9AD27637F2A002796E2 /* ImagePicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				831539A12384982000CAD2DD /* My Favourite Recipes */,
+				8482702B2764DFA100D69978 /* Model */,
 				831539A02384982000CAD2DD /* Products */,
 				8483A9AB27637F2A002796E2 /* Frameworks */,
 			);
@@ -116,7 +128,7 @@
 		847C4AA5275E5AAF00FD2B5B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				847C4AAC275E5FF800FD2B5B /* Recipe.swift */,
+				848270312764E34500D69978 /* CountryDataStorage.swift */,
 				847C4B01275EDA9900FD2B5B /* RecipeDataStorage.swift */,
 			);
 			path = Model;
@@ -199,6 +211,7 @@
 		847C4B0927618B1700FD2B5B /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
+				8482702427642B9600D69978 /* Components */,
 				8497F63E2762D2E7005D1825 /* Utilities */,
 				847C4B0A27618B2600FD2B5B /* ViewModifiers */,
 				84827022276424F800D69978 /* Typealiases.swift */,
@@ -217,6 +230,7 @@
 		847C4B0D27618CDB00FD2B5B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8482702E2764E07200D69978 /* Model */,
 				847C4B1027618CFB00FD2B5B /* SwiftUI */,
 				8497F6412762D32F005D1825 /* UiKit */,
 			);
@@ -226,8 +240,9 @@
 		847C4B1027618CFB00FD2B5B /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				847C4B0E27618CEB00FD2B5B /* View.swift */,
 				847C4B122762536900FD2B5B /* Color.swift */,
+				848270292764DBA300D69978 /* Image.swift */,
+				847C4B0E27618CEB00FD2B5B /* View.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -247,6 +262,23 @@
 				847C4B1B2762549900FD2B5B /* RecipesRouter.swift */,
 			);
 			path = Routing;
+			sourceTree = "<group>";
+		};
+		8482702427642B9600D69978 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8482702527642BA300D69978 /* TextView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		8482702E2764E07200D69978 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				848270332764E38D00D69978 /* Country.swift */,
+				8482702F2764E07D00D69978 /* Recipe.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8483A9AB27637F2A002796E2 /* Frameworks */ = {
@@ -289,6 +321,7 @@
 			name = "My Favourite Recipes";
 			packageProductDependencies = (
 				8483A9AC27637F2A002796E2 /* ImagePicker */,
+				8482702C2764DFB500D69978 /* Model */,
 			);
 			productName = "My Favourite Recipes";
 			productReference = 8315399F2384982000CAD2DD /* My Favourite Recipes.app */;
@@ -345,6 +378,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				848270322764E34500D69978 /* CountryDataStorage.swift in Sources */,
 				847C4B182762542D00FD2B5B /* Routing.swift in Sources */,
 				847C4B0F27618CEB00FD2B5B /* View.swift in Sources */,
 				847C4AFE275ECFDB00FD2B5B /* RecipeDetailView.swift in Sources */,
@@ -353,7 +387,10 @@
 				831539A32384982000CAD2DD /* AppDelegate.swift in Sources */,
 				834CF2C42385F425007BE6C5 /* RecipesViewModel.swift in Sources */,
 				847C4B0C27618B3400FD2B5B /* AddButton.swift in Sources */,
+				848270342764E38D00D69978 /* Country.swift in Sources */,
+				8482702A2764DBA300D69978 /* Image.swift in Sources */,
 				847C4B1C2762549900FD2B5B /* RecipesRouter.swift in Sources */,
+				8482702627642BA300D69978 /* TextView.swift in Sources */,
 				847C4B082761894E00FD2B5B /* AddRecipeViewModel.swift in Sources */,
 				847C4AB1275E61DA00FD2B5B /* RecipeRow.swift in Sources */,
 				847C4B062761894400FD2B5B /* AddRecipeView.swift in Sources */,
@@ -363,7 +400,7 @@
 				847C4B02275EDA9900FD2B5B /* RecipeDataStorage.swift in Sources */,
 				831539A72384982000CAD2DD /* RecipesView.swift in Sources */,
 				84827023276424F800D69978 /* Typealiases.swift in Sources */,
-				847C4AAD275E5FF800FD2B5B /* Recipe.swift in Sources */,
+				848270302764E07D00D69978 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,6 +598,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8482702C2764DFB500D69978 /* Model */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Model;
+		};
 		8483A9AC27637F2A002796E2 /* ImagePicker */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ImagePicker;

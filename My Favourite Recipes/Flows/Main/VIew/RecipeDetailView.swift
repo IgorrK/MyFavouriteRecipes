@@ -6,15 +6,14 @@
 //
 
 import SwiftUI
+import Model
 
 struct RecipeDetailView: View {
     
     // MARK: - Properties
     
     @ObservedObject var viewModel: RecipeDetailViewModel
-    
-    // MARK: - Lifecycle
-    
+        
     // MARK: - View
     
     var body: some View {
@@ -27,7 +26,7 @@ struct RecipeDetailView: View {
             .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal)
             
-            Image(viewModel.recipe.countryCode)
+            Image(uiImageOrNil: viewModel.recipe.country.image)?
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(maxWidth: .infinity, maxHeight: 200)

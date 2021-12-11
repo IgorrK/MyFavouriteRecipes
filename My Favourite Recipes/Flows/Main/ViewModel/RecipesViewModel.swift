@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import Combine
+import Model
 
 final class RecipesViewModel: Identifiable, ObservableObject {
     
@@ -52,18 +53,18 @@ final class RecipesViewModel: Identifiable, ObservableObject {
     private func loadData() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             var recipes = [Recipe]()
-            recipes.append(Recipe(id: UUID(), name: "Italian Pizza Chicken", origin: "Italian", countryCode: "IT", ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
-            recipes.append(Recipe(id: UUID(), name: "Greek Pasta Bake", origin: "Greek", countryCode: "GR", ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
-            recipes.append(Recipe(id: UUID(), name: "Hearty Parsnip Soup", origin: "British", countryCode: "GB", ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
-            recipes.append(Recipe(id: UUID(), name: "Honey & Soy Salmon", origin: "Chinese", countryCode: "CN", ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(name: "Italian Pizza Chicken", origin: "Italian", country: Country(id: "IT", name: "Italy", flagEmoji: "🇮🇹"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(name: "Greek Pasta Bake", origin: "Greek", country: Country(id: "GR", name: "Greece", flagEmoji: "🇬🇷"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(name: "Hearty Parsnip Soup", origin: "British", country: Country(id: "GB", name: "Great Britain", flagEmoji: "🇬🇧"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(name: "Honey & Soy Salmon", origin: "Chinese", country: Country(id: "CN", name: "China", flagEmoji: "🇨🇳"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
             self?.storage.setItems(from: recipes)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
             var recipes = [Recipe]()
-            recipes.append(Recipe(id: UUID(), name: "Italian 2", origin: "Italian", countryCode: "IT", ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
-            recipes.append(Recipe(id: UUID(), name: "Greek 2", origin: "Greek", countryCode: "GR", ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
-            recipes.append(Recipe(id: UUID(), name: "British 2", origin: "British", countryCode: "GB", ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(name: "Italian 2", origin: "Italian", country: Country(id: "IT", name: "Italy", flagEmoji: "🇮🇹"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(name: "Greek 2", origin: "Greek", country: Country(id: "GR", name: "Greece", flagEmoji: "🇬🇷"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(name: "British 2", origin: "British", country: Country(id: "GB", name: "Great Britain", flagEmoji: "🇬🇧"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
             self?.storage.addItems(from: recipes)
         }
     }
