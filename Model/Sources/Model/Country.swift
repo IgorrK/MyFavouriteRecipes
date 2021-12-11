@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public struct Country: Identifiable, Hashable {
+public struct Country: Identifiable, Hashable, Codable {
     
     // MARK: - Lifecycle
     

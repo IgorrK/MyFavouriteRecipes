@@ -28,7 +28,7 @@ struct RecipesRouter: Routing {
             let viewModel = RecipeDetailViewModel(dataStorage: dataStorage, recipe: recipe)
             RecipeDetailView(viewModel: viewModel)
         case .addRecipe:
-            let viewModel = AddRecipeViewModel()
+            let viewModel = AddRecipeViewModel(recipeStorage: dataStorage)
             AddRecipeView(viewModel: viewModel)
         }
     }

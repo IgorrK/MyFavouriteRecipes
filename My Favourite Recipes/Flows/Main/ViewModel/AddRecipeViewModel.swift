@@ -13,7 +13,9 @@ final class AddRecipeViewModel: Identifiable, ObservableObject {
 
     // MARK: - Properties
     
-    @ObservedObject private var storage = CountryDataStorage()
+    @ObservedObject private var countryStorage = CountryDataStorage()
+    @ObservedObject private var recipeStorage: RecipeDataStorage
+    
     var id = UUID()
 
     @Published var ingredients = [String]()
@@ -21,8 +23,9 @@ final class AddRecipeViewModel: Identifiable, ObservableObject {
 
     // MARK: - Lifecycle
     
-    init() {
-        self.countryListDataSource = storage.countries
+    init(recipeStorage: RecipeDataStorage) {
+        self.recipeStorage = recipeStorage
+        self.countryListDataSource = countryStorage.countries
     }
     
     // MARK: - Public methods
@@ -35,4 +38,18 @@ final class AddRecipeViewModel: Identifiable, ObservableObject {
         ingredients.removeAll(where: { $0 == ingredient })
     }
 
+    func saveRecipe(name: String, ingredients: [String], recipe: String, country: Country, image: UIImage?) {
+        var recipeImage = UIImage()
+        if let libImage = image {
+            recipeImage = libImage
+        }
+        
+        let recipe = Recipe(name: name,
+                            country: country,
+                            ingredients: ingredients,
+                            recipe: recipe,
+                            imageData: recipeImage.jpegData(compressionQuality: 0.3) ?? Data())
+        recipeStorage.addItem(recipe)
+        recipeStorage.saveData()
+    }
 }

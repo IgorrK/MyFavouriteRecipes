@@ -6,26 +6,35 @@
 //
 
 import Foundation
+import UIKit
 
-public struct Recipe: Identifiable, Hashable {
+public struct Recipe: Identifiable, Hashable, Codable {
     
     // MARK: - Properties
     
     public var id = UUID()
     public var name = ""
-    public var origin = ""
     public var isFavourite: Bool = false
     public var country: Country
     public var ingredients = [String]()
     public var recipe = ""
+    public var imageData: Data?
+    public var image: UIImage {
+        if let dataImage = UIImage(data: imageData ?? Data()) {
+            return dataImage
+        } else if let countryImage = UIImage(named: country.id) {
+            return countryImage
+        }
+        return UIImage()
+    }
     
     // MARK: - Lifecycle
     
-    public init(name: String, origin: String, country: Country, ingredients: [String], recipe: String) {
+    public init(name: String, country: Country, ingredients: [String], recipe: String, imageData: Data? = nil) {
         self.name = name
-        self.origin = origin
         self.country = country
         self.ingredients = ingredients
         self.recipe = recipe
+        self.imageData = imageData
     }
 }

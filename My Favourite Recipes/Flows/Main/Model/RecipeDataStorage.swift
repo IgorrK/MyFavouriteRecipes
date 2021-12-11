@@ -12,9 +12,37 @@ final class RecipeDataStorage: ObservableObject {
     
     // MARK: - Property
     
-    @Published private(set) var recipes: [Recipe] = []
+    @Published private(set) var recipes: [Recipe]
+     
+    // MARK: - Lifecycle
+    
+    init() {
+        recipes = Self.loadData()
+    }
+    
+    // MARK: - Private methods
         
+    private static func loadData() -> [Recipe] {
+        do {
+            let data = try UserDefaults.standard.recipesData.unwrap()
+            let recipes = try JSONDecoder().decode([Recipe].self, from: data)
+            return recipes
+        } catch {
+            print(error)
+            return [Recipe]()
+        }
+    }
+    
     // MARK: - Public methods
+    
+    func saveData() {
+        do {
+            let data = try JSONEncoder().encode(recipes)
+            UserDefaults.standard.recipesData = data
+        } catch {
+            print(error)
+        }
+    }
     
     func addItems(from contentsOf: [Recipe]) {
         recipes.append(contentsOf: contentsOf)
@@ -24,7 +52,7 @@ final class RecipeDataStorage: ObservableObject {
         recipes = contentsOf
     }
     
-    func addItems(_ item: Recipe) {
+    func addItem(_ item: Recipe) {
         recipes.append(item)
     }
     

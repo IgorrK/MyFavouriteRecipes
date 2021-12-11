@@ -12,7 +12,6 @@ import Model
 extension Recipe {
     static var mockItem: Recipe {
         return Recipe(name: "Italian Pizza Chicken",
-                      origin: "Italian",
                       country: Country(id: "IT", name: "Italy", flagEmoji: "🇮🇹"),
                       ingredients: mockIngredients,
                       recipe: mockRecipe

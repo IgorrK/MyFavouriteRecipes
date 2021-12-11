@@ -39,7 +39,9 @@ final class RecipesViewModel: Identifiable, ObservableObject {
         cancellable = self.storage.$recipes.sink { [weak self] data in
             self?.updateListDataSource(with: data)
         }
-        loadData()
+        if storage.recipes.count == 0 {
+            loadData()
+        }
     }
     
     // MARK: - Public methods
@@ -53,19 +55,20 @@ final class RecipesViewModel: Identifiable, ObservableObject {
     private func loadData() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             var recipes = [Recipe]()
-            recipes.append(Recipe(name: "Italian Pizza Chicken", origin: "Italian", country: Country(id: "IT", name: "Italy", flagEmoji: "🇮🇹"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
-            recipes.append(Recipe(name: "Greek Pasta Bake", origin: "Greek", country: Country(id: "GR", name: "Greece", flagEmoji: "🇬🇷"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
-            recipes.append(Recipe(name: "Hearty Parsnip Soup", origin: "British", country: Country(id: "GB", name: "Great Britain", flagEmoji: "🇬🇧"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
-            recipes.append(Recipe(name: "Honey & Soy Salmon", origin: "Chinese", country: Country(id: "CN", name: "China", flagEmoji: "🇨🇳"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(name: "Italian Pizza Chicken", country: Country(id: "IT", name: "Italy", flagEmoji: "🇮🇹"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(name: "Greek Pasta Bake", country: Country(id: "GR", name: "Greece", flagEmoji: "🇬🇷"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(name: "Hearty Parsnip Soup", country: Country(id: "GB", name: "Great Britain", flagEmoji: "🇬🇧"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(name: "Honey & Soy Salmon", country: Country(id: "CN", name: "China", flagEmoji: "🇨🇳"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
             self?.storage.setItems(from: recipes)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
             var recipes = [Recipe]()
-            recipes.append(Recipe(name: "Italian 2", origin: "Italian", country: Country(id: "IT", name: "Italy", flagEmoji: "🇮🇹"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
-            recipes.append(Recipe(name: "Greek 2", origin: "Greek", country: Country(id: "GR", name: "Greece", flagEmoji: "🇬🇷"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
-            recipes.append(Recipe(name: "British 2", origin: "British", country: Country(id: "GB", name: "Great Britain", flagEmoji: "🇬🇧"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(name: "Italian 2", country: Country(id: "IT", name: "Italy", flagEmoji: "🇮🇹"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(name: "Greek 2", country: Country(id: "GR", name: "Greece", flagEmoji: "🇬🇷"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
+            recipes.append(Recipe(name: "British 2", country: Country(id: "GB", name: "Great Britain", flagEmoji: "🇬🇧"), ingredients: Recipe.mockIngredients, recipe: Recipe.mockRecipe))
             self?.storage.addItems(from: recipes)
+            self?.storage.saveData()
         }
     }
     

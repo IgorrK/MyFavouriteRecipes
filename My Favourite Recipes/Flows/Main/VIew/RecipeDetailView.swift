@@ -44,7 +44,7 @@ struct RecipeDetailView: View {
                 }
             }
             // Recipe origin
-            Text("Origin: \(viewModel.recipe.origin)")
+            Text("Origin: \(viewModel.recipe.country.name)")
                 .font(.subheadline)
                 .padding(.leading, 10.0)
             

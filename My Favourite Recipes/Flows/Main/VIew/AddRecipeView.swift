@@ -13,6 +13,7 @@ struct AddRecipeView: View {
     
     // MARK: - Properties
     
+    @Environment(\.presentationMode) private var presentationMode
     @ObservedObject var viewModel: AddRecipeViewModel
     
     @State private var recipeName: String = ""
@@ -119,8 +120,27 @@ struct AddRecipeView: View {
                     }//.id(UUID())
                 }
             }
-            .navigationBarHidden(true)
             .navigationBarTitle("Add Recipe")
+            .navigationBarItems(trailing: Button(action: {
+                guard let countryIndex = selectedCountry else {
+                    print("Country not selected")
+                    return
+                }
+                
+                let country = viewModel.countryListDataSource[countryIndex]
+
+                viewModel.saveRecipe(name: recipeName,
+                                     ingredients: viewModel.ingredients,
+                                     recipe: recipeDetails,
+                                     country: country,
+                                     image: pickedImage)
+                
+                presentationMode.wrappedValue.dismiss()
+                
+            }) {
+                Text("Save")
+            }
+            )
         }
     }
 }
@@ -185,12 +205,11 @@ private extension AddRecipeView {
                 return .white
             }
         }
-        
     }
 }
 
 struct AddRecipeView_Previews: PreviewProvider {
     static var previews: some View {
-        AddRecipeView(viewModel: AddRecipeViewModel())
+        AddRecipeView(viewModel: AddRecipeViewModel(recipeStorage: RecipeDataStorage()))
     }
 }
