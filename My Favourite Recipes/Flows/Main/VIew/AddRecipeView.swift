@@ -8,6 +8,7 @@
 import SwiftUI
 import ImagePicker
 import Model
+import UIKit
 
 struct AddRecipeView: View {
     
@@ -16,15 +17,10 @@ struct AddRecipeView: View {
     @Environment(\.presentationMode) private var presentationMode
     @ObservedObject var viewModel: AddRecipeViewModel
     
-    @State private var recipeName: String = ""
-    @State private var recipeDetails: String = ""
-    @State private var ingredient: String = ""
     @State private var showsSourceType = false
     @State private var showsImagePicker = false
     @State private var showsPermissionDeniedAlert: Bool = false
     @State private var pickerSourceType: ImagePicker.SourceType = .photoLibrary
-    @State private var pickedImage: UIImage?
-    @State private var selectedCountry: Int?
     
     // MARK: - View
     
@@ -72,29 +68,38 @@ struct AddRecipeView: View {
                 }
                 .permissionDeniedAlert(sourceType: pickerSourceType, isPresented: $showsPermissionDeniedAlert)
                 .sheet(isPresented: $showsImagePicker) {
-                    ImagePicker.picker(sourceType: pickerSourceType, selectedImage: $pickedImage)
+                    ImagePicker.picker(sourceType: pickerSourceType, selectedImage: $viewModel.input.pickedImage)
                 }
                 
                 Section(header: Text("Add Recipe Name:")) {
-                    TextField("enter recipe name", text: $recipeName)
+                    TextField("enter recipe name", text: $viewModel.input.name)
+                        .validation(viewModel.input.nameValidation)
                 }
                 
                 Section(header: Text("Add Ingredient:")) {
-                    TextField("enter ingredient name", text: $ingredient)
-                        .if(!ingredient.isEmpty) { view in
-                            view.modifier(AddButton(onAction: {
-                                viewModel.addIngredient(ingredient)
-                                ingredient = ""
-                            }))
+                    HStack {
+                        TextField("enter ingredient name", text: $viewModel.input.ingredient)
+                            .validation(viewModel.input.ingredientValidation, flag: $viewModel.input.ingredientIsValid)
+                            .validation(viewModel.input.ingredientsValidation)
+                        
+                        if viewModel.input.ingredientIsValid {
+                            Button(action: {
+                                viewModel.input.addCurrentIngredient()
+                                hideKeyboard()
+                            }) {
+                                Image(systemName: "plus")
+                                    .foregroundColor(.systemTint)
+                            }
                         }
+                    }
                 }
                 
-                if viewModel.ingredients.count > 0 {
+                if viewModel.input.ingredients.count > 0 {
                     Section(header: Text("Current Ingredients:")) {
-                        List(viewModel.ingredients, id: \.self) { ingredient in
+                        List(viewModel.input.ingredients, id: \.self) { ingredient in
                             HStack(spacing: 8.0) {
                                 Button(action: {
-                                    viewModel.removeIngredient(ingredient)
+                                    viewModel.input.removeIngredient(ingredient)
                                 }) {
                                     Image(systemName: "minus")
                                         .foregroundColor(Color(UIColor.opaqueSeparator))
@@ -108,48 +113,48 @@ struct AddRecipeView: View {
                 }
                 
                 Section(header: Text("Details")) {
-                    detailsTextView(text: $recipeDetails)
+                    detailsTextView(text: $viewModel.input.details)
+                        .validation(viewModel.input.detailsValidation)
                         .frame(height: 220)
                 }
                 
                 Section(header: Text("Country of Origin:")) {
-                    Picker(selection: $selectedCountry, label: Text("Country")) {
+                    Picker(selection: $viewModel.input.selectedCountryIndex, label: Text("Country")) {
                         ForEach(Array(viewModel.countryListDataSource.enumerated()), id: \.offset) { index, country in
-                            Text(country.name).tag(index as Int?)
+                            Text(country.name).tag(index)
                         }
-                    }//.id(UUID())
+                    }
                 }
             }
             .navigationBarTitle("Add Recipe")
-            .navigationBarItems(trailing: Button(action: {
-                guard let countryIndex = selectedCountry else {
-                    print("Country not selected")
-                    return
-                }
-                
-                let country = viewModel.countryListDataSource[countryIndex]
-
-                viewModel.saveRecipe(name: recipeName,
-                                     ingredients: viewModel.ingredients,
-                                     recipe: recipeDetails,
-                                     country: country,
-                                     image: pickedImage)
-                
-                presentationMode.wrappedValue.dismiss()
-                
-            }) {
-                Text("Save")
-            }
-            )
+            .navigationBarItems(trailing: saveButton.disabled(!viewModel.input.isSaveEnabled))
+            .validation(viewModel.input.saveButtonValidation, flag: $viewModel.input.isSaveEnabled)
         }
+    }
+}
+
+// MARK: - Private methods
+private extension AddRecipeView {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 
 // MARK: - Subviews
 private extension AddRecipeView {
+    
+    @ViewBuilder var saveButton: some View {
+        Button(action: {
+            viewModel.saveRecipeFromInput()
+            presentationMode.wrappedValue.dismiss()
+        }, label: {
+            Text("Save")
+        })
+    }
+    
     @ViewBuilder
     var buttonImage: some View {
-        if let pickedImage = pickedImage {
+        if let pickedImage = viewModel.input.pickedImage {
             Image(uiImage: pickedImage)
                 .resizable()
                 .aspectRatio(contentMode: .fill)

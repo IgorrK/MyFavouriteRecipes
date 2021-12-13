@@ -8,48 +8,111 @@
 import Foundation
 import Model
 import SwiftUI
+import Validation
+import Combine
 
 final class AddRecipeViewModel: Identifiable, ObservableObject {
 
     // MARK: - Properties
     
+    var id = UUID()
+    @Published var input: Input
     @ObservedObject private var countryStorage = CountryDataStorage()
     @ObservedObject private var recipeStorage: RecipeDataStorage
-    
-    var id = UUID()
 
-    @Published var ingredients = [String]()
     @Published var countryListDataSource = [Country]()
 
+    private var anyCancellable: AnyCancellable? = nil
+    
+    var selectedCountry: Country { countryListDataSource[input.selectedCountryIndex] }
+    
     // MARK: - Lifecycle
     
     init(recipeStorage: RecipeDataStorage) {
+        self.input = Input()
         self.recipeStorage = recipeStorage
         self.countryListDataSource = countryStorage.countries
+        self.anyCancellable = input.objectWillChange.sink { [weak self] (_) in
+            self?.objectWillChange.send()
+        }
     }
     
     // MARK: - Public methods
-    
-    func addIngredient(_ ingredient: String) {
-        ingredients.append(ingredient)
-    }
-    
-    func removeIngredient(_ ingredient: String) {
-        ingredients.removeAll(where: { $0 == ingredient })
-    }
 
-    func saveRecipe(name: String, ingredients: [String], recipe: String, country: Country, image: UIImage?) {
+    func saveRecipeFromInput() {
         var recipeImage = UIImage()
-        if let libImage = image {
+        if let libImage = input.pickedImage {
             recipeImage = libImage
         }
         
-        let recipe = Recipe(name: name,
-                            country: country,
-                            ingredients: ingredients,
-                            recipe: recipe,
+        let recipe = Recipe(name: input.name,
+                            country: selectedCountry,
+                            ingredients: input.ingredients,
+                            recipe: input.details,
                             imageData: recipeImage.jpegData(compressionQuality: 0.3) ?? Data())
         recipeStorage.addItem(recipe)
         recipeStorage.saveData()
+    }
+    
+}
+
+// MARK: - Input and Validation
+extension AddRecipeViewModel {
+    final class Input: ObservableObject {
+     
+        // MARK: - Lifecycle
+        
+        @Published var name: String = ""
+        @Published var details: String = ""
+        @Published var ingredient: String = ""
+        
+        @Published var ingredientIsValid: Bool = false 
+
+        @Published var ingredients = [String]()
+        
+        @Published var isSaveEnabled = false
+
+        @Published var selectedCountryIndex = 0
+        
+        @Published var pickedImage: UIImage?
+
+        // MARK: - Validation
+        
+        lazy var nameValidation: Validation.Publisher = {
+            $name.nonEmptyValidator("Name cannot be empty")
+        }()
+        
+        lazy var detailsValidation: Validation.Publisher = {
+            $details.nonEmptyValidator("Recipe cannot be empty")
+        }()
+        
+        lazy var ingredientValidation: Validation.Publisher = {
+            $ingredient.nonEmptyValidator()
+        }()
+        
+        lazy var ingredientsValidation: Validation.Publisher = {
+            $ingredients.closureValidator { value -> Validation.Status in
+                if value.isEmpty {
+                    return .failure(message: "Recipe should contain at least one ingredient")
+                } else {
+                    return .success
+                }
+            }
+        }()
+        
+        lazy var saveButtonValidation: Validation.Publisher = {
+            Validation.Publishers.validateLatest3(nameValidation, detailsValidation, ingredientsValidation)
+        }()
+
+        // MARK: - Public methods
+        
+        func addCurrentIngredient() {
+            ingredients.append(ingredient)
+            ingredient = ""
+        }
+        
+        func removeIngredient(_ ingredient: String) {
+            ingredients.removeAll(where: { $0 == ingredient })
+        }
     }
 }
