@@ -34,7 +34,8 @@ extension Validation {
             return VStack(alignment: .leading) {
                 content
                 validationMessage
-            }.onReceive(validationPublisher) { validation in
+            }
+            .onReceive(validationPublisher) { validation in
                 self.latestValidation = validation
             }
         }

@@ -10,6 +10,7 @@ import Model
 import SwiftUI
 import Validation
 import Combine
+import CharacterLimit
 
 final class AddRecipeViewModel: Identifiable, ObservableObject {
 
@@ -102,6 +103,18 @@ extension AddRecipeViewModel {
         
         lazy var saveButtonValidation: Validation.Publisher = {
             Validation.Publishers.validateLatest3(nameValidation, detailsValidation, ingredientsValidation)
+        }()
+        
+        lazy var nameCharacterLimit: CharacterLimit.Publisher = {
+            $name.characterLimit(40)
+        }()
+        
+        lazy var ingredientCharacterLimit: CharacterLimit.Publisher = {
+            $ingredient.characterLimit(40)
+        }()
+        
+        lazy var detailsCharacterLimit: CharacterLimit.Publisher = {
+            $details.characterLimit(300)
         }()
 
         // MARK: - Public methods

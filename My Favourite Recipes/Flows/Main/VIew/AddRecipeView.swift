@@ -9,6 +9,7 @@ import SwiftUI
 import ImagePicker
 import Model
 import UIKit
+import CharacterLimit
 
 struct AddRecipeView: View {
     
@@ -72,12 +73,12 @@ struct AddRecipeView: View {
                     ImagePicker.picker(sourceType: pickerSourceType, selectedImage: $viewModel.input.pickedImage)
                 }
                 
-                Section(header: Text("Add Recipe Name:")) {
+                Section(header: Text("Add Recipe Name:").characterLimit(viewModel.input.nameCharacterLimit, text: $viewModel.input.name)) {
                     TextField("enter recipe name", text: $viewModel.input.name)
                         .validation(viewModel.input.nameValidation)
                 }
                 
-                Section(header: Text("Add Ingredient:")) {
+                Section(header: Text("Add Ingredient:").characterLimit(viewModel.input.ingredientCharacterLimit, text: $viewModel.input.ingredient)) {
                     HStack {
                         TextField("enter ingredient name", text: $viewModel.input.ingredient)
                             .validation(viewModel.input.ingredientValidation, flag: $viewModel.input.ingredientIsValid)
@@ -113,7 +114,7 @@ struct AddRecipeView: View {
                     }
                 }
                 
-                Section(header: Text("Details")) {
+                Section(header: Text("Details").characterLimit(viewModel.input.detailsCharacterLimit, text: $viewModel.input.details)) {
                     detailsTextView(text: $viewModel.input.details)
                         .validation(viewModel.input.detailsValidation)
                         .frame(height: 220)

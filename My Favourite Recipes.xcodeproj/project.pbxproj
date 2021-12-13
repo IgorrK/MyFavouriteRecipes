@@ -37,6 +37,7 @@
 		84827041276519CB00D69978 /* Validation in Frameworks */ = {isa = PBXBuildFile; productRef = 84827040276519CB00D69978 /* Validation */; };
 		8483A9AD27637F2A002796E2 /* ImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 8483A9AC27637F2A002796E2 /* ImagePicker */; };
 		8497F6432762D347005D1825 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497F6422762D347005D1825 /* UIScreen.swift */; };
+		84EA35A727676681002663E3 /* CharacterLimit in Frameworks */ = {isa = PBXBuildFile; productRef = 84EA35A627676681002663E3 /* CharacterLimit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		84827036276506B800D69978 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		8482703827650A1E00D69978 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		8482703F276519BD00D69978 /* Validation */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Validation; sourceTree = "<group>"; };
+		848270492767663200D69978 /* CharacterLimit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CharacterLimit; sourceTree = "<group>"; };
 		8483A9AA27637EDC002796E2 /* ImagePicker */ = {isa = PBXFileReference; lastKnownFileType = text; path = ImagePicker; sourceTree = SOURCE_ROOT; };
 		8497F6422762D347005D1825 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +83,7 @@
 			files = (
 				84827041276519CB00D69978 /* Validation in Frameworks */,
 				8482702D2764DFB500D69978 /* Model in Frameworks */,
+				84EA35A727676681002663E3 /* CharacterLimit in Frameworks */,
 				8483A9AD27637F2A002796E2 /* ImagePicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				831539A12384982000CAD2DD /* My Favourite Recipes */,
+				848270492767663200D69978 /* CharacterLimit */,
 				8482702B2764DFA100D69978 /* Model */,
 				8483A9AA27637EDC002796E2 /* ImagePicker */,
 				8482703F276519BD00D69978 /* Validation */,
@@ -338,6 +342,7 @@
 				8483A9AC27637F2A002796E2 /* ImagePicker */,
 				8482702C2764DFB500D69978 /* Model */,
 				84827040276519CB00D69978 /* Validation */,
+				84EA35A627676681002663E3 /* CharacterLimit */,
 			);
 			productName = "My Favourite Recipes";
 			productReference = 8315399F2384982000CAD2DD /* My Favourite Recipes.app */;
@@ -626,6 +631,10 @@
 		8483A9AC27637F2A002796E2 /* ImagePicker */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ImagePicker;
+		};
+		84EA35A627676681002663E3 /* CharacterLimit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CharacterLimit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
