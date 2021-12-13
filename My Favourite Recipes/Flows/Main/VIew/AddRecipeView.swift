@@ -37,6 +37,7 @@ struct AddRecipeView: View {
                                height: UIScreen.Geometry.width / 2.0,
                                alignment: .center)
                         .padding(6)
+                        .animation(.linear, value: viewModel.input.pickedImage)
                 }
                 .buttonStyle(PlainButtonStyle())
                 .frame(maxWidth: .infinity)
@@ -154,23 +155,28 @@ private extension AddRecipeView {
     
     @ViewBuilder
     var buttonImage: some View {
-        if let pickedImage = viewModel.input.pickedImage {
-            Image(uiImage: pickedImage)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .overlay(
-                    Circle()
-                        .stroke(Color.systemTint, lineWidth: 3)
-                        .shadow(radius: 10)
-                )
-        } else {
-            Image(systemName: "plus.circle")
-                .renderingMode(.template)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .foregroundColor(Style.buttonForegroundColor)
-                .frame(width: 96.0, height: 96.0, alignment: .center)
-        }
+        let isPickedImage = viewModel.input.pickedImage != nil
+        let image: Image = {
+            if let pickedImage = viewModel.input.pickedImage {
+                return Image(uiImage: pickedImage)
+            } else {
+                return Image(systemName: "plus.circle")
+            }
+        }()
+        
+        image
+            .renderingMode(isPickedImage ? .original : .template)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .overlay(
+                Circle()
+                    .stroke(isPickedImage ? Color.systemTint : Color.clear, lineWidth: 3)
+                    .shadow(radius: 10)
+            )
+            .foregroundColor(Style.buttonForegroundColor)
+            .frame(width: isPickedImage ? UIScreen.Geometry.width / 2.0 - 12.0 : 96.0,
+                   height: isPickedImage ? UIScreen.Geometry.width / 2.0 - 12.0 : 96.0,
+                   alignment: .center)
     }
     
     @ViewBuilder
